@@ -8,18 +8,12 @@ Panorama
 {% block left-side %}
                 <div class="row" style="margin-bottom: 60px">
                     <div class="col-4">
-                        <h2>New Questions</h2>
+                        <h2>Университеты</h2>
                     </div>
                 </div>
 
-                {{universities}}
-
                 <!-- цикл для отображения университетов, очень удобно -->
                 {% for item in universities %}
-
-                        <div>
-                            item
-                        </div>
                     {% include 'components/universitite-item.html' %}
                 {% endfor %}
 

@@ -34,3 +34,8 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label="Login", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
     password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
+
+
+
+class AddReviewForm(forms.Form):
+    review = forms.CharField(widget=forms.Textarea(attrs={"class": "col-9 pole_for_question", "placeholder": "Введи здесь свой отзыв"}))

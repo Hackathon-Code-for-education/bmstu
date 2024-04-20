@@ -4,8 +4,8 @@
         <img src='{{ item.image.url }}' width="130" height="130" alt="Image">
     </div>
     <div class="col-8 questionpanel">
-        <a href=''>
-            <h4 style="padding-bottom: 13px">{{ item.title }}</h4>
+        <a href='{% url 'univer' univer_id=item.id %}'>
+            <h4 style="padding-bottom: 13px">{{ item.name }}</h4>
         </a>
         <p style="word-wrap: break-word;">
             {{ item.description }}
@@ -26,45 +26,3 @@
 
 </div>
 
-
-<!--
-<div class="dropdowntoch">
-<button type="button" onclick="myFunction()" class="dropbtn3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots"
-         viewBox="0 0 20 20">
-        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
-    </svg>
-     <span class="visually-hidden">Button</span>
-</button>
-  <div id="myDropdown" class="dropdowntoch-content">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div>
-
-
-<script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn3')) {
-
-    var dropdowns = document.getElementsByClassName("dropdowntoch-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
-
--->

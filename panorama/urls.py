@@ -10,5 +10,5 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout_user'),
     path('signup', views.signup, name='signup'),
     path('settings', views.settings, name='settings'),
-    path('univer', views.univer, name='univer'),
+    path('univer/<int:univer_id>', views.univer, name='univer'),
 ]

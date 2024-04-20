@@ -44,4 +44,6 @@ class University(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    reviews = models.ManyToManyField('Review', null=True, blank=True, related_name='universities')
+
 
