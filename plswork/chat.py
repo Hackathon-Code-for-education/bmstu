@@ -52,17 +52,17 @@ class ChatMessage(ft.Row):
 
 def main(page: ft.Page):
     page.horizontal_alignment = "stretch"
-    page.title = "Flet Chat"
+    page.title = "ЪУЪ чат"
 
     def join_chat_click(e):
         if not join_user_name.value:
-            join_user_name.error_text = "Name cannot be blank!"
+            join_user_name.error_text = "Имя не может быть пустым!"
             join_user_name.update()
         else:
             page.session.set("user_name", join_user_name.value)
             page.dialog.open = False
             new_message.prefix = ft.Text(f"{join_user_name.value}: ")
-            page.pubsub.send_all(Message(user_name=join_user_name.value, text=f"{join_user_name.value} has joined the chat.", message_type="login_message"))
+            page.pubsub.send_all(Message(user_name=join_user_name.value, text=f"{join_user_name.value} вошёл в чат.", message_type="login_message"))
             page.update()
 
     def send_message_click(e):
@@ -84,16 +84,16 @@ def main(page: ft.Page):
 
     # A dialog asking for a user display name
     join_user_name = ft.TextField(
-        label="Enter your name to join the chat",
+        label="Введите никнейм:",
         autofocus=True,
         on_submit=join_chat_click,
     )
     page.dialog = ft.AlertDialog(
         open=True,
         modal=True,
-        title=ft.Text("Welcome!"),
+        title=ft.Text("Добро пожаловать!"),
         content=ft.Column([join_user_name], width=300, height=70, tight=True),
-        actions=[ft.ElevatedButton(text="Join chat", on_click=join_chat_click)],
+        actions=[ft.ElevatedButton(text="Войти", on_click=join_chat_click)],
         actions_alignment="end",
     )
 
@@ -106,7 +106,7 @@ def main(page: ft.Page):
 
     # A new message entry form
     new_message = ft.TextField(
-        hint_text="Write a message...",
+        hint_text="Напишите сообщение...",
         autofocus=True,
         shift_enter=True,
         min_lines=1,
