@@ -113,8 +113,26 @@ def univer(request, univer_id):
     """
     Функция отображения для домашней страницы сайта.
     """
-
     item = University.objects.get(id=univer_id)
+
+
+    try:
+        if request.method == "POST":
+            form = AddReviewForm(request.POST)
+            if form.is_valid():
+                if request.user.is_authenticated:
+                    data = form.cleaned_data
+                    item.reviews.create(text=data["review"], user=request.user)
+                else:
+                    form.add_error('review', "You must be logged in!")
+                    return render(
+                        request,
+                        'university.html',
+                        context={'item': item, 'form': form}
+                    )
+    except Exception as e:
+        print(e)
+
     form = AddReviewForm()
 
     return render(
