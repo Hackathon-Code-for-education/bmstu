@@ -33,18 +33,34 @@ python manage.py migrate
 
 ```
 python manage.py runserver 8001
-
+```
 
 
 ## Cоздать суперпользователя
 
+```
 Username (leave blank to use 'admin'): admin
 Email address: admin@admin.com
 Password: ********
 Password (again): ********
 Superuser created successfully.
+```
 
 
-## Панель админисьратора достпна по ссылке
+## Панель администратора достпна по ссылке
 http://127.0.0.1:8001/admin/
+
+вручную можно добавить вуз и пользователей
+
+
+## Cоздать пользователя MySql и добавить базу данных 
+
+
+## Настроить базу данных
+
+открыть файл [local_settings.py](local_settings.py) и записать 
+```
+user="имя пользователя MySql"
+password="пароль"
+```
 
