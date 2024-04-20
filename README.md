@@ -60,6 +60,7 @@ http://127.0.0.1:8001/admin/
 
 открыть файл [local_settings.py](local_settings.py) и записать 
 ```
+DATABASE_NAME = "Panorama"
 user="имя пользователя MySql"
 password="пароль"
 ```
