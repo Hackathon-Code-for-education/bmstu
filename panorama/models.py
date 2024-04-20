@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
+
+
 def user_directory_path(instance, filename):
     return 'users/user_{0}/{1}'.format(instance.user.id, filename)
 
@@ -26,11 +28,20 @@ class Profile(models.Model):
     education = models.CharField(max_length=600, blank=True,null=True)
 
 
+class University(models.Model):
+    admin_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=False, blank=False)
 
+    image = models.ImageField(
+        upload_to=user_directory_path,
+        blank=True,
+        null=True
+    )
+    phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
+    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False, blank=False)
 
-
-
-
-
+    description = models.CharField(max_length=500, null=False, blank=False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
 

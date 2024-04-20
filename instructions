@@ -15,6 +15,9 @@ pip install django
 
 проверить, установлена ли MySql на устройстве
 
+сохраняем миграции для бд
+python manage.py makemigrations
+
 запускаем миграции для базы данных
 python manage.py migrate
 

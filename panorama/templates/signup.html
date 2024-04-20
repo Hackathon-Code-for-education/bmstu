@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href={% static "js/upload-form.js" %}>
+{% endblock %}
+{% block title %}Signup{% endblock %}
+
+
+
+
+
+{% block left-side %}
+
+
+    <div class="col-4" style="margin-bottom: 30px">
+        <h2 style="margin-bottom: 30px">Registration</h2>
+        <span style="color:darkred"></span>
+    </div>
+    <form action='{% url 'signup' %}' method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.widget_type.index %}
+            {% endif %}
+            <div class="error_1"> {{ field.errors }} </div>
+
+            <div class="row ask_question">
+                <div class="col-2" style="margin-right: 10px">
+                    {{ field.label }}
+                </div>
+                {{ field }}
+            </div>
+        {% endfor %}
+
+        <input style="margin-left: 145px; width: 90px" type="submit" value="Register">
+    </form>
+
+   
+{% endblock %}
