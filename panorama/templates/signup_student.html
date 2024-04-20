@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Login
+{% endblock %}
+
+
+{% block main %}
+
+<div align=center>
+    <div>Регистрация</div>
+    <div>
+        <form action="/signup_prove">
+            <label for="ulogin">Логин</label><br>
+            <input type="text" id="ulogin"><br>
+            <label for="upassword">Пароль</label><br>
+            <input type="text" id="upassword"><br>
+            <label for="upassword">Повтор пароля</label><br>
+            <input type="text" id="upassword"><br>
+            
+            <label for="umail">Почта</label><br>
+            <input type="text" id="umail"><br>
+
+            <label for="uorg">Организация</label><br>
+            <input type="text" id="uorg"><br>
+            <!--здесь должно быть поле загрузки файлов -->
+
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

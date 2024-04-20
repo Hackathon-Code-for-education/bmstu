@@ -10,15 +10,21 @@ Login
 {% block main %}
 
 <div align=center>
-    <div>Войти</div>
+    <div>Регистрация</div>
     <div>
-        <form action="/login_prove">
+        <form action="/signup_prove">
             <label for="ulogin">Логин</label><br>
             <input type="text" id="ulogin"><br>
             <label for="upassword">Пароль</label><br>
             <input type="text" id="upassword"><br>
+            <label for="upassword">Повтор пароля</label><br>
+            <input type="text" id="upassword"><br>
 
-            <input type="submit" value="Войти">
+
+            <label for="umail">Почта</label><br>
+            <input type="text" id="umail"><br>
+
+            <input type="submit" value="Зарегисстрироваться">
         </form>
     </div>
 </div>
