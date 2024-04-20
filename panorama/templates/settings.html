@@ -1,0 +1,30 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block links %}
+<style>
+        html, body, .player {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+</style>
+{% endblock %}
+
+
+{% block title %}
+TestPanorama
+{% endblock %}
+
+{% block scripts %}
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
+<script src= "{% static "js/panorama_custom.js" %}"></script>
+{% endblock %}
+
+{% block main %}
+
+<div id="player" class="player"></div>
+
+{% endblock %}

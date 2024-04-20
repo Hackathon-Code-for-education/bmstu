@@ -16,7 +16,7 @@ ymaps.ready(function () {
     ymaps.util.defineClass(TileLevel, {
         getTileUrl: function (x, y) {
             // Определяем URL тайла для переданных индексов.
-            return this._urlTemplate.replace('%c', y + '-' + x);
+            return this._urlTemplate.replace('%c', x + '-' + y);
         },
 
         getImageSize: function () {
@@ -30,8 +30,8 @@ ymaps.ready(function () {
         // Наша панорама будет содержать два уровня масштабирования
         // панорамного изображения: низкого и высокого качества.
         this._tileLevels = [
-            new TileLevel('tiles/lq/%c.jpg', [512, 512]),
-            new TileLevel('tiles/hq/%c.jpg', [9728, 4864])
+            //new TileLevel('uploads/tiles/lq/%c.jpg', [512, 256]),
+            new TileLevel('uploads/tiles/lq/%c.jpg', [9728, 4864])
         ];
     }
 
