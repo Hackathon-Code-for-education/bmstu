@@ -1,14 +1,31 @@
 {% extends "layouts/base.html" %}
-
 {% load static %}
 
 {% block title %}
-Home
+Panorama
+{% endblock %}
+
+{% block left-side %}
+                <div class="row" style="margin-bottom: 60px">
+                    <div class="col-4">
+                        <h2>New Questions</h2>
+                    </div>
+                </div>
+
+                {{universities}}
+
+                <!-- цикл для отображения университетов, очень удобно -->
+                {% for item in universities %}
+
+                        <div>
+                            item
+                        </div>
+                    {% include 'components/universitite-item.html' %}
+                {% endfor %}
+
 {% endblock %}
 
 
-{% block main %}
-
-Это главный блок, здесь все располагается основное
+{% block scripts %}
 
 {% endblock %}

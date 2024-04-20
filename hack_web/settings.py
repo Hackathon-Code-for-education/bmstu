@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'panorama.apps.PanoramaConfig'
+    'panorama'
 ]
 
 MIDDLEWARE = [
@@ -138,6 +138,7 @@ MEDIA_ROOT = BASE_DIR / 'panorama/uploads'
 
 import local_settings
 
-# DATABASES = local_settings.DATABASES
+
+DATABASES = local_settings.DATABASES
 SECRET_KEY = local_settings.SECRET_KEY
 

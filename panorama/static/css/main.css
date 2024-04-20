@@ -1,0 +1,220 @@
+main.container {
+    padding-top: 60px;
+}
+
+.like-count {
+    font-size: 20px;
+    padding: 3px;
+    position: absolute;
+    margin-left: 18px;
+}
+
+button.like-button {
+    border-radius: 10px;
+    width: 35px;
+    padding-left: 10px;
+    margin-left: 2px;
+}
+
+button.dislike-button{
+    border-radius: 10px;
+    width: 35px;
+    padding-left: 10px;
+    margin-left: 2px;
+}
+
+.tag {
+    padding-right: 17px;
+    padding-bottom: 18px;
+    font-size: 23px;
+}
+
+.tags {
+    padding-bottom: 9px;
+}
+
+.best_members {
+    padding-top: 30px;
+}
+
+.member {
+    color: #0a53be;
+    font-size: 17px;
+    padding-bottom: 8px;
+}
+
+.question {
+    border: solid;
+    border-color: #1a1d20;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.questionpanel {
+    margin-left: 20px;
+}
+
+.question_text_urls {
+    margin-top: 25px;
+}
+
+.ask_question {
+    margin-bottom: 35px;
+}
+
+.pole_for_question {
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.text_pole{
+    height: 220px;
+}
+
+.pole_for_log {
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    width: 300px;
+}
+
+a.page-link{
+    color: black;
+}
+
+/* Стиль активного класса и кнопки при наведении курсора мыши */
+a.active_custom, .page-link:hover {
+  background-color: #666;
+  color: white;
+}
+
+
+.error_1{
+    color: darkred;
+}
+
+
+
+.navbar1 {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+}
+
+/* Ссылки в панели навигации */
+.navbar1 a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Выпадающий контейнер */
+.dropdown1 {
+  float: left;
+  overflow: hidden;
+}
+
+/* Кнопка выпадающего списка */
+.dropdown1 .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Важно для вертикального выравнивания на мобильных телефонах */
+  margin: 0; /* Важно для вертикального выравнивания на мобильных телефонах */
+}
+
+/* Добавить красный цвет фона для ссылок на навигационную панель при наведении курсора */
+.navbar a:hover, .dropdown1:hover{
+  background-color: #A9A9A9;
+
+}
+
+/* Выпадающее содержимое (скрыто по умолчанию) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Ссылки внутри выпадающего списка */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+
+.activelike {
+    background-color: red;
+}
+
+/* Добавить серый цвет фона для выпадающих ссылок при наведении курсора */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Показать выпадающее меню при наведении курсора */
+.dropdown1:hover .dropdown-content {
+    display: block;
+}
+
+
+/*
+меню с темя точками
+ */
+.dropbtn3 {
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn3:hover, .dropbtn3:focus {
+    background-color: gray;
+}
+
+.dropdowntoch {
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdowntoch-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdowntoch-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdowntoch a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
