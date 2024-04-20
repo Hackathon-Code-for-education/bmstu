@@ -1,0 +1,19 @@
+
+сначала установить окуржение
+
+python3.10 -m venv venv
+source venv/bin/activate
+pip install django
+
+
+фризим зависимости
+# pip freeze > requirements.txt
+
+
+скачиваем зависмости
+# pip install -r requirements.txt
+
+
+
+запуск для тестов
+python manage.py runserver
