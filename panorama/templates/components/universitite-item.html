@@ -7,6 +7,9 @@
         <a href='{% url 'univer' univer_id=item.id %}'>
             <h4 style="padding-bottom: 13px">{{ item.name }}</h4>
         </a>
+        <a href='{% url 'panorama' univer_id=item.id %}'>
+            <h5 style="padding-bottom: 13px">Панорама</h5>
+        </a>
         <p style="word-wrap: break-word;">
             {{ item.description }}
         </p>

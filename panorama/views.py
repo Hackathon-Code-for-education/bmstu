@@ -140,3 +140,15 @@ def univer(request, univer_id):
         'university.html',
         context={'item': item, 'form': form}
     )
+
+
+def panorama(request, univer_id):
+
+    univers = University.objects.all()
+
+    print(univers)
+    return render(
+        request,
+        'index.html',
+        context={'universities': univers}
+    )
