@@ -1,0 +1,11 @@
+pip~=24.0
+cryptography~=42.0.5
+lxml~=5.1.0
+setuptools~=58.1.0
+pillow~=10.2.0
+
+asgiref==3.8.1
+Django==5.0.4
+mysqlclient==2.2.4
+sqlparse==0.5.0
+
