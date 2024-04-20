@@ -92,7 +92,7 @@ def settings(request):
 
             return render(
                 request,
-                'settings.html', context={"form": form}
+                'settings1.html', context={"form": form}
             )
 
         else:
@@ -107,7 +107,7 @@ def settings(request):
     # form.set_values(user_now.username, user_now.email, user_now.first_name)
     return render(
         request,
-        'settings.html', context={"form": form}
+        'settings1.html', context={"form": form}
     )
 def univer(request, univer_id):
     """
