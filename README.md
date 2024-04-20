@@ -21,3 +21,17 @@ python manage.py migrate
 запуск сервера для тестов
 
 python manage.py runserver 8001
+
+
+## Cоздать суперпользователя
+
+Username (leave blank to use 'admin'): admin
+Email address: admin@admin.com
+Password: ********
+Password (again): ********
+Superuser created successfully.
+
+
+## Панель админисьратора достпна по ссылке
+http://127.0.0.1:8001/admin/
+
