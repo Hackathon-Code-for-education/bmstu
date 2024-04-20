@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+University
+{% endblock %}
+
+
+
+{% block left-side %}
+    {% include 'components/universitite-item.html' %}
+
+
+     {% for answer in item.reviews.all %}
+        {% include 'components/review-item.html' %}
+    {% endfor %}
+
+
+
+    <form action='{% url 'univer' univer_id=item.id %}' method="post">
+    {% csrf_token %}
+        <div class="error_1">{{ form.answer.errors }}</div>
+        <div class="row ask_question">
+            {{ form.review }}
+        </div>
+
+        <input type="submit" value="Оставить отзыв">
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src={% static 'js/like-counter.js' %}></script>
+    <script src="{% static 'js/checkbox-right.js' %}"></script>
+{% endblock %}

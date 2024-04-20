@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layouts/base.html" %}
 
-</body>
-</html>
+
+{% block title %}Login{% endblock %}
+{% block left-side %}
+
+    <div class="col-4" style="margin-bottom: 30px">
+        <h2 style="margin-bottom: 30px">Log In</h2>
+        <span style="color:darkred">{{ form.non_field_errors }}</span>
+    </div>
+
+    <form action='{% url 'login' %}' method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="error_1"> {{ field.errors }} </div>
+            <div class="row ask_question">
+                <div class="col-2" style="margin-right: 10px">
+                    {{ field.label }}
+                </div>
+                {{ field }}
+            </div>
+        {% endfor %}
+
+        <input style="margin-left: 145px; width: 90px" type="submit" value="Log in!">
+    </form>
+
+    <div class="row">
+     <a href='{% url 'signup' %}' style="margin-left: 145px; margin-top: 10px">create new account</a>
+    </div>
+
+{% endblock %}
+
