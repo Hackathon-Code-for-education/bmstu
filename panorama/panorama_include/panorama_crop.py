@@ -15,6 +15,7 @@ def panorama_crop_and_load(image, cell_size, org, name, index):
             b_image = image.crop((x*cell_size, y*cell_size, 
                       min((x+1)*cell_size, size[0]),min((y+1)*cell_size, size[1])))
             b_image.save(path+"{0}-{1}.jpg".format(x,y))
+    c_image =  
 
 
 def create_directory(org, name, index):
