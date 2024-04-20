@@ -13,7 +13,10 @@ pip install django
 скачиваем зависмости
 # pip install -r requirements.txt
 
+проверить, установлена ли MySql на устройстве
 
+запускаем миграции для базы данных
+python manage.py migrate
 
-запуск для тестов
+запуск сервера для тестов
 python manage.py runserver
