@@ -149,6 +149,6 @@ def panorama(request, univer_id):
     print(univers)
     return render(
         request,
-        'index.html',
-        context={'universities': univers}
+        'panorama.html',
+        context={}
     )

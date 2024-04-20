@@ -13,12 +13,16 @@
   <h4>Панорама</h4>
   <div id=player>
 
-</div>
+  </div>
 </div>
 
 
 {% endblock %}
 
+
 {% block scripts %}
-    <script src="{% static 'js/checkbox-right.js' %}"></script>
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
+<script src="{% static "js/panorama_custom.js" %}"></script>
+
 {% endblock %}

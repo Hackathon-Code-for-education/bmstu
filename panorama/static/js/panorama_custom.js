@@ -17,7 +17,7 @@ ymaps.ready(function () {
             tileSize: [512, 512],
             tileLevels: [{
                 getTileUrl: function (x, y) {
-                    return 'uploads/tiles/1/route2/0/lq/' + x + '-' + y + '.jpg';
+                    return '/uploads/tiles/1/route2/0/lq/' + x + '-' + y + '.jpg';
                 },
                 getImageSize: function () {
                     return [3584, 1792];
@@ -53,7 +53,7 @@ ymaps.ready(function () {
             tileSize: [512, 512],
             tileLevels: [{
                 getTileUrl: function (x, y) {
-                    return 'uploads/tiles/1/route2/1/lq/' + x + '-' + y + '.jpg';
+                    return '/uploads/tiles/1/route2/1/lq/' + x + '-' + y + '.jpg';
                 },
                 getImageSize: function () {
                     return [3584, 1792];
