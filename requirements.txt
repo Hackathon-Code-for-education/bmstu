@@ -1,0 +1,7 @@
+pip~=24.0
+cryptography~=42.0.5
+lxml~=5.1.0
+setuptools~=58.1.0
+Django~=4.2.6
+pillow~=10.2.0
+
