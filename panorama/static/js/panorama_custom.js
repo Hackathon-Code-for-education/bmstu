@@ -40,7 +40,6 @@ function panorama_init(route){
     player_div.id = "player".concat(route.name)
     player_div.className = "panorama_player"
     player_div.style.width = "100%"
-    player_div.style.height = "1024px"
     div2.appendChild(player_div)
 
     const photo_path = "/uploads/tiles/".concat(orgname, "/", route.name);
