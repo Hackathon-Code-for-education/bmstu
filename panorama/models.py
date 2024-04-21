@@ -57,7 +57,7 @@ class Profile(models.Model):
     )
     birth_date = models.DateField(null=False, blank=False)
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
-    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False, blank=False)
+    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=True, blank=True)
 
     base_general = "BG"
     midle_general = "MG"

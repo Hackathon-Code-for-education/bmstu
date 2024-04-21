@@ -1,24 +1,32 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from panorama.models import Profile
+
 
 class SettingsForm(forms.Form):
-    username = forms.CharField(label="Login", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "col-9 pole_for_log"}))
-    first_name = forms.CharField(label="NickName", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    first_name = forms.CharField(label="Имя", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    date = forms.DateField(label="Дата рождения",  widget=forms.DateInput(attrs={"class": "col-9 pole_for_log"}))
+    education = forms.ChoiceField(label="Образование", choices=Profile.education_choices, widget=forms.Select(attrs={"class": "col-9 pole_for_log"}))
+    # user_type = forms.ChoiceField(label="Тип пользователя", choices=Profile.user_type_choises, widget=forms.Select(attrs={"class": "col-9 pole_for_log"}))
 
-    image = forms.ImageField(required=False, label="Upload avatar", widget=forms.FileInput(attrs={"class": "col-9"}))
+    image = forms.ImageField(required=False, label="Загрузка аватара", widget=forms.FileInput(attrs={"class": "col-9"}))
 
 
 class RegisterForm(forms.ModelForm):
-    username = forms.CharField(label="Login", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "col-9 pole_for_log"}))
-    first_name = forms.CharField(label="NickName", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
-    password2 = forms.CharField(label='Repeat password',
+    username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    email = forms.EmailField(label="Почта", widget=forms.EmailInput(attrs={"class": "col-9 pole_for_log"}))
+    first_name = forms.CharField(label="Имя", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    date = forms.DateField(label="Дата рождения",  widget=forms.DateInput(attrs={"class": "col-9 pole_for_log"}))
+    education = forms.ChoiceField(label="Образование", choices=Profile.education_choices, widget=forms.Select(attrs={"class": "col-9 pole_for_log"}))
+    user_type = forms.ChoiceField(label="Тип пользователя", choices=Profile.user_type_choises, widget=forms.Select(attrs={"class": "col-9 pole_for_log"}))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
+    password2 = forms.CharField(label='Повтор пароля',
                                 widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
 
-    image = forms.ImageField(required=False, label="Upload avatar", widget=forms.FileInput(attrs={"class": "col-9"}))
+    image = forms.ImageField(required=False, label="Загрузка аватара", widget=forms.FileInput(attrs={"class": "col-9"}))
 
     class Meta:
         model = User
@@ -32,8 +40,8 @@ class RegisterForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Login", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
-    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
+    username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
 
 
 

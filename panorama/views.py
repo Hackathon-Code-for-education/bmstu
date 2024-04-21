@@ -207,3 +207,29 @@ def add_paorama(request):
         'add_panorama.html',
         context={'form': form}
     )
+
+
+
+def add_univer(request):
+    form = AddPanoramaForm()
+
+    if request.method == "POST":
+        form = AddPanoramaForm(request.POST, request.FILES)
+        if form.is_valid():
+            res=add_zip_file(request.user, form)
+            file_url = res[1]
+            print(file_url)
+            print(res)
+        else:
+            print("nooooo")
+
+
+
+    else:
+        form = AddPanoramaForm()
+
+    return  render(
+        request,
+        'add_panorama.html',
+        context={'form': form}
+    )
