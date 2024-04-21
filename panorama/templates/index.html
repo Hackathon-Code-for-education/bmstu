@@ -5,34 +5,21 @@
 Panorama
 {% endblock %}
 
-{% block scripts %}
+{% block left-side %}
+                <div class="row" style="margin-bottom: 60px">
+                    <div class="col-4">
+                        <h2>Университеты</h2>
+                    </div>
+                </div>
 
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
-<script src="{? static "js/panorama_custom.js" ?}"></script>
+                <!-- цикл для отображения университетов, очень удобно -->
+                {% for item in universities %}
+                    {% include 'components/universitite-item.html' %}
+                {% endfor %}
 
 {% endblock %}
 
 
-{% block left-side %}
-                <div class="row" style="margin-bottom: 60px">
-                    <div class="col-4">
-                        <h2>New Questions</h2>
-                    </div>
-                </div>
-
-
-                <div class=player id=player style="width: 100%"></div>
-
-
-                {{universities}}
-
-                <!-- цикл для отображения университетов, очень удобно -->
-                {% for item in universities %}
-
-                        <div>
-                            item
-                        </div>
-                    {% include 'components/universitite-item.html' %}
-                {% endfor %}
+{% block scripts %}
 
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+Панорама
+{% endblock %}
+
+
+
+
+
+
+{% block panoram %}
+<h4>Панорама</h4>
+  <div class=player id=player style="width: 100%; height: 1024px"></div>
+    {% endblock %}
+
+{% block scripts %}
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
+<script src="{% static "js/panorama_custom.js" %}"></script>
+
+{% endblock %}

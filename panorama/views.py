@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 
-from panorama.forms import RegisterForm
+from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm
 from panorama.models import *
+from django.http import HttpResponse
 
 
 def index(request):
@@ -20,14 +21,25 @@ def index(request):
     )
 
 def login_user(request):
-    """
-    Функция отображения для домашней страницы сайта.
-    """
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect(index)
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                form.add_error('username', 'Invalid login or password')
+    else:
+        form = LoginForm()
 
     return render(
         request,
-        'index.html',
-        context={}
+        'login.html', context={"form": form}
     )
 
 def logout_user(request):
@@ -63,23 +75,80 @@ def signup(request):
 
 def settings(request):
     user_now = request.user
+    if request.method == "POST":
+        form = SettingsForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = User.objects.get(username=user_now.username)
+            # user.profile.image
+            print(data)
+            user.username = data["username"]
+            user.first_name = data["first_name"]
+            user.email = data["email"]
+            user.save()
+            if request.FILES:
+                # add_image_profile(user, request)
+                print(1)
 
+            return render(
+                request,
+                'settings.html', context={"form": form}
+            )
+
+        else:
+            print(form.is_valid())
+
+    user = User.objects.get(username=user_now.username)
+    form = SettingsForm(initial={'username': user.username, 'first_name': user.first_name,
+                                 'email': user.email,
+                                 # 'image': profile.image.url
+                                 })
+    # print(form)
+    # form.set_values(user_now.username, user_now.email, user_now.first_name)
     return render(
         request,
-        'settings.html', context={}
+        'settings.html', context={"form": form}
     )
-
-
-def univer(request):
+def univer(request, univer_id):
     """
     Функция отображения для домашней страницы сайта.
     """
+    item = University.objects.get(id=univer_id)
+
+
+    try:
+        if request.method == "POST":
+            form = AddReviewForm(request.POST)
+            if form.is_valid():
+                if request.user.is_authenticated:
+                    data = form.cleaned_data
+                    item.reviews.create(text=data["review"], user=request.user)
+                else:
+                    form.add_error('review', "You must be logged in!")
+                    return render(
+                        request,
+                        'university.html',
+                        context={'item': item, 'form': form}
+                    )
+    except Exception as e:
+        print(e)
+
+    form = AddReviewForm()
+
+    return render(
+        request,
+        'university.html',
+        context={'item': item, 'form': form}
+    )
+
+
+def panorama(request, univer_id):
 
     univers = University.objects.all()
 
     print(univers)
     return render(
         request,
-        'index.html',
-        context={'universities': univers}
+        'panorama.html',
+        context={}
     )
