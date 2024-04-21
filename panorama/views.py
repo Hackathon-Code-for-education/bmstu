@@ -2,8 +2,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 
-from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm
-from panorama.helpers import add_image_profile
+from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm, AddPanoramaForm
+from panorama.helpers import add_image_profile, add_zip_file
 from panorama.models import *
 from django.http import HttpResponse
 
@@ -182,4 +182,27 @@ def for_univers(request):
         request,
         'for_universities.html',
         context={}
+    )
+
+def add_paorama(request):
+    form = AddPanoramaForm()
+
+    if request.method == "POST":
+        form = AddPanoramaForm(request.POST, request.FILES)
+        if form.is_valid():
+            res=add_zip_file(request.user, form)
+
+            print(res)
+        else:
+            print("nooooo")
+
+
+
+    else:
+        form = AddPanoramaForm()
+
+    return  render(
+        request,
+        'add_panorama.html',
+        context={'form': form}
     )
