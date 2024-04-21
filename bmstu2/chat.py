@@ -1,5 +1,9 @@
 import flet as ft
+from langdetect import detect
 
+from transformers import pipeline
+
+pipe = pipeline("text2text-generation", model="abhiai/ModerationGPT")
 class Message():
     def __init__(self, user_name: str, text: str, message_type: str):
         self.user_name = user_name
@@ -67,6 +71,16 @@ def main(page: ft.Page):
 
     def send_message_click(e):
         if new_message.value != "":
+            # print(new_message.value)
+            # new_message.value = "0"
+            # print(new_message.value)
+            # print(detect(new_message.value))
+            # if detect(new_message.value) in ["en", "sw", "fi", "sv", "it", "vi", "pl", "tl", "da", "sl"]:
+            #     new_message.value = pipe(new_message.value)
+            # print(pipe(new_message.value))
+            if "*" in pipe(new_message.value)[0]['generated_text']:
+                new_message.value = pipe(new_message.value)[0]['generated_text']
+                # print(new_message.value)
             page.pubsub.send_all(Message(page.session.get("user_name"), new_message.value, message_type="chat_message"))
             new_message.value = ""
             new_message.focus()
