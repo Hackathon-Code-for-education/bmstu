@@ -1,7 +1,9 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 
 from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm
+from panorama.helpers import add_image_profile
 from panorama.models import *
 from django.http import HttpResponse
 
@@ -56,8 +58,7 @@ def signup(request):
             user = User.objects.get(username=new_user.username)
             print(user)
             if request.FILES:
-                print(1)
-                # сдезь обработка файла должна быть
+                add_image_profile(user, request)
             login(request, new_user)
             return redirect(index)
         else:
@@ -87,8 +88,8 @@ def settings(request):
             user.email = data["email"]
             user.save()
             if request.FILES:
-                # add_image_profile(user, request)
-                print(1)
+                add_image_profile(user, request)
+
 
             return render(
                 request,
@@ -99,12 +100,18 @@ def settings(request):
             print(form.is_valid())
 
     user = User.objects.get(username=user_now.username)
+    profile = Profile.objects.get(user=user.id)
+
+    print(profile)
+
     form = SettingsForm(initial={'username': user.username, 'first_name': user.first_name,
                                  'email': user.email,
-                                 # 'image': profile.image.url
+                                 'image': profile.image.url
                                  })
     # print(form)
-    # form.set_values(user_now.username, user_now.email, user_now.first_name)
+    #form.set_values(user_now.username, user_now.email, user_now.first_name)
+
+
     return render(
         request,
         'settings.html', context={"form": form}
@@ -166,5 +173,13 @@ def administr_panorama(request):
     return  render(
         request,
         'admin/admin_univers.html',
+        context={}
+    )
+
+
+def for_univers(request):
+    return  render(
+        request,
+        'for_universities.html',
         context={}
     )

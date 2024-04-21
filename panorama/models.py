@@ -25,20 +25,22 @@ class Profile(models.Model):
     birth_date = models.DateField(null=False, blank=False)
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
     phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False, blank=False)
-    education = models.CharField(max_length=200, blank=True,null=True)
 
-    FRESHMAN = "FR"
-    SOPHOMORE = "SO"
-    JUNIOR = "JR"
-    SENIOR = "SR"
-    GRADUATE = "GR"
-    YEAR_IN_SCHOOL_CHOICES = {
-        FRESHMAN: "Freshman",
-        SOPHOMORE: "Sophomore",
-        JUNIOR: "Junior",
-        SENIOR: "Senior",
-        GRADUATE: "Graduate",
+    base_general = "BG"
+    midle_general = "MG"
+    higher = "HR"
+
+    education_choices = {
+        base_general: "Основное общее",
+        midle_general: "Cреднее общее",
+        higher: "Высшее"
     }
+
+    education = models.CharField(
+        max_length=2,
+        choices=education_choices,
+        default=base_general,
+    )
 
     student = "ST"
     matriculant = "AB"
@@ -76,23 +78,6 @@ class University(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     reviews = models.ManyToManyField('Review', null=True, blank=True, related_name='universities')
-
-    student = "ST"
-    matriculant = "AB"
-    teacher = "TE"
-
-    user_type_choises = {
-        student: "Студент",
-        matriculant: "Абитуриент",
-        teacher: "Преподаватель"
-
-    }
-
-    user_type = models.CharField(
-        max_length=2,
-        choices=user_type_choises,
-        default=matriculant,
-    )
 
 
     verified = "VF"
