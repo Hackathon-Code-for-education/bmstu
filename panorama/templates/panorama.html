@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Панорама
+    Панорама
 {% endblock %}
 
 
@@ -11,13 +11,28 @@
 
 
 {% block panoram %}
-<h4>Панорама</h4>
-  <div class=player id=player style="width: 100%; height: 1024px"></div>
-    {% endblock %}
+    <h4>Панорама</h4>
+
+    <div id=panorama_players_container>
+
+    </div>
+
+    {% if request.user.is_authenticated and user.profile.user_type == "RE" %}
+        <a href="{% url 'add_panorama' %}">
+            Добавить панораму
+        </a>
+        {% elif request.user.is_authenticated and user.profile.user_type == "ST" %}
+        <a href="{% url 'add_panorama' %}">
+            Добавить панораму
+        </a>
+    {% endif %}
+
+
+{% endblock %}
 
 {% block scripts %}
 
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
-<script src="{% static "js/panorama_custom.js" %}"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
+    <script src="{% static "js/panorama_custom.js" %}"></script>
 
 {% endblock %}

@@ -39,3 +39,9 @@ class LoginForm(forms.Form):
 
 class AddReviewForm(forms.Form):
     review = forms.CharField(widget=forms.Textarea(attrs={"class": "col-9 pole_for_question", "placeholder": "Введи здесь свой отзыв"}))
+
+
+class AddPanoramaForm(forms.Form):
+    title = forms.CharField(max_length=50, label="Название маршрута", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    file = forms.FileField(required=True, label="Загрузка панорамы", widget=forms.FileInput(attrs={"class": "col-9"}))
+
