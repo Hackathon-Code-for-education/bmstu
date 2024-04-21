@@ -7,6 +7,12 @@ from django.core.validators import RegexValidator
 def user_directory_path(instance, filename):
     return 'users/user_{0}/{1}'.format(instance.user.id, filename)
 
+def univer_certificate_path(instance, filename):
+    return 'univers/user_{0}/{1}'.format(instance.user.id, filename)
+
+def univer_directory_path(instance, filename):
+    return 'univers/user_{0}/{1}'.format(instance.user.id, filename)
+
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     text = models.CharField(max_length=200, null=False, blank=False)
@@ -57,7 +63,7 @@ class Profile(models.Model):
     )
     birth_date = models.DateField(null=False, blank=False)
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
-    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False, blank=False)
+    phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=True, blank=True)
 
     base_general = "BG"
     midle_general = "MG"
@@ -101,9 +107,9 @@ class University(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
 
     image = models.ImageField(
-        upload_to=user_directory_path,
-        blank=True,
-        null=True
+        upload_to=univer_directory_path,
+        blank=False,
+        null=False
     )
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
     phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False, blank=False)
@@ -113,6 +119,12 @@ class University(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     reviews = models.ManyToManyField('Review', null=True, blank=True, related_name='universities')
+
+    certificate = models.FileField(
+        upload_to=univer_certificate_path,
+        blank=False,
+        null=False
+    )
 
 
     verified = "VF"

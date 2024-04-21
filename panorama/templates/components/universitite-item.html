@@ -1,7 +1,7 @@
 {% load static %}
 <div class="row question">
     <div class="col-2">
-        <img src='{{ item.image.url }}' width="130" height="130" alt="Image">
+            <img src='{{ item.image.url }}' width="130" height="130" alt="Image">
     </div>
     <div class="col-8 questionpanel">
         <a href='{% url 'univer' univer_id=item.id %}'>

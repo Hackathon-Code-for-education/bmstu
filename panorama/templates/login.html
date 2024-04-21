@@ -5,7 +5,7 @@
 {% block left-side %}
 
     <div class="col-4" style="margin-bottom: 30px">
-        <h2 style="margin-bottom: 30px">Log In</h2>
+        <h2 style="margin-bottom: 30px">Вход</h2>
         <span style="color:darkred">{{ form.non_field_errors }}</span>
     </div>
 
@@ -21,11 +21,11 @@
             </div>
         {% endfor %}
 
-        <input style="margin-left: 145px; width: 90px" type="submit" value="Log in!">
+        <input style="margin-left: 145px; width: 90px" type="submit" value="Войти">
     </form>
 
     <div class="row">
-     <a href='{% url 'signup' %}' style="margin-left: 145px; margin-top: 10px">create new account</a>
+     <a href='{% url 'signup' %}' style="margin-left: 145px; margin-top: 10px">создать новый аккаунт</a>
     </div>
 
 {% endblock %}

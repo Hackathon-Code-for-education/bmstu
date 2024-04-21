@@ -14,7 +14,7 @@ urlpatterns = [
     path('univer/<int:univer_id>/panorama', views.panorama, name='panorama'),
     path('for_univers', views.for_univers, name='for_univers'),
     path('add_panorama', views.add_paorama, name='add_panorama'),
-    path('chat', views.chat, name='chat'),
+    path('add_univer', views.add_univer, name='add_univer'),
 
     path('privacy_policy', views.privacy_policy, name='policy'),
     path('admin_pan', views.administr_panorama, name='admin_pan'),

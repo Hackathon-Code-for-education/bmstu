@@ -5,20 +5,12 @@
     <link rel="stylesheet" href={% static 'css/upload_form.css' %}>
 {% endblock %}
 
-{% block title %}Settings{% endblock %}
-
-{% block scripts %}
-
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7ed357a5-4da6-483e-bf97-cdeb9fd1fcf0"></script>
-<script src="{% static "js/panorama_custom.js" %}"></script>
-
-{% endblock %}
-
+{% block title %}Настройки{% endblock %}
 
 {% block left-side %}
 
     <div class="col-5">
-        <h2 style="margin-bottom: 60px">Settings: {{ user.first_name }}</h2>
+        <h2 style="margin-bottom: 60px">Настройки: {{ user.first_name }}</h2>
     </div>
     <form action='{% url 'settings' %}' method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -34,7 +26,7 @@
                 {{ field }}
             </div>
         {% endfor %}
-    <span>Your avatar now:</span>
+    <span>Ваш аватар:</span>
     <div class="col-9" style="margin-left: 145px; margin-bottom: 30px">
          <img src="{{ user.profile.image.url }}" alt="Now avatar" width="100px" height="100px">
     </div>
@@ -76,6 +68,12 @@
     </div>
 
      -->
+
+
+{% endblock %}
+
+
+{% block scripts %}
 
 
 {% endblock %}

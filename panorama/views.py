@@ -2,8 +2,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 
-from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm, AddPanoramaForm
-from panorama.helpers import add_image_profile, add_zip_file
+from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm, AddPanoramaForm, AddUniversityForm
+from panorama.helpers import add_image_profile, add_zip_file, add_image_univer
 from panorama.models import *
 from django.http import HttpResponse
 
@@ -194,6 +194,7 @@ def add_paorama(request):
             file_url = res[1]
             print(file_url)
             print(res)
+            # redirect(panorama,univer_id=1)
         else:
             print("nooooo")
 
@@ -208,9 +209,76 @@ def add_paorama(request):
         context={'form': form}
     )
 
-def chat(request):
-    return render(
+
+
+def add_univer(request):
+    form = AddUniversityForm()
+    user = request.user
+    if request.method == "POST":
+        form = AddUniversityForm(request.POST, request.FILES)
+        if form.is_valid():
+            # res=add_zip_file(request.user, form)
+            # file_url = res[1]
+            # print(file_url)
+
+            data = form.cleaned_data
+
+            representer = data['representer']
+
+            name = data['name']
+
+            image = data['image']
+
+            phone = data['phone']
+
+            description = data['description']
+
+            scan_file = data['scan_file']
+
+            new_univer = University()
+            new_univer.user = user
+            new_univer.name = name
+            new_univer.phoneNumber = phone
+            new_univer.description = description
+
+            new_univer.check_type = University.on_moderate
+            try:
+                new_univer.save()
+
+            except Exception as e:
+                print(e)
+
+
+            if image:
+                add_image_univer(user,image)
+
+
+            print(data)
+
+            #new_user = form.sa
+            # new_user.set_password(user_form.cleaned_data['password'])
+            """
+            new_user.save()
+            user = User.objects.get(username=new_user.username)
+            print(user)
+            if request.FILES:
+                add_image_profile(user, request)
+            login(request, new_user)
+            return redirect(index)
+            data = form.cleaned_data
+            print(data)
+            """
+            return redirect(index)
+        else:
+            print("nooooo")
+
+
+
+    else:
+        form = AddUniversityForm()
+
+    return  render(
         request,
-        'chat.html',
-        context={}
+        'add_university.html',
+        context={'form': form}
     )
