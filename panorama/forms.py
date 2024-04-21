@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from panorama.models import Profile
+from panorama.models import Profile, University
 
 
 class SettingsForm(forms.Form):
@@ -53,3 +53,16 @@ class AddPanoramaForm(forms.Form):
     title = forms.CharField(max_length=50, label="Название маршрута", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
     file = forms.FileField(required=True, label="Загрузка панорамы", widget=forms.FileInput(attrs={"class": "col-9"}))
 
+
+class AddUniversityForm(forms.Form):
+    representer = forms.CharField(max_length=50, label="Логин представителя", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    name = forms.CharField(max_length=50, label="Название организации", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    image = forms.ImageField(required=True, label="Загрузка обложки", widget=forms.FileInput(attrs={"class": "col-9"}))
+    phone = forms.CharField(max_length=50, label="Телефон", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    description = forms.CharField(max_length=400, label="Описание организации", widget=forms.TextInput(attrs={"class": "col-9 pole_for_log"}))
+    scan_file = forms.FileField(required=True, label="Свидетельство о государственной аккредитации", widget=forms.FileInput(attrs={"class": "col-9"}))
+
+
+    class Meta:
+        model = University
+        fields = ('user', 'name', 'image', 'phoneNumber', )
