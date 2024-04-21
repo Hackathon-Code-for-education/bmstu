@@ -1,3 +1,5 @@
+const container = document.getElementById("panorama_players_container")
+
 const url_params = window.location.pathname.split("/");
 const orgname = url_params[url_params.length-2];
 const json_prop = "/uploads/tiles/".concat(orgname, "/property.json");
