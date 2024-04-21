@@ -152,3 +152,19 @@ def panorama(request, univer_id):
         'panorama.html',
         context={}
     )
+
+
+def privacy_policy(request):
+    return  render(
+        request,
+        'privacy_policy.html',
+        context={}
+    )
+
+
+def administr_panorama(request):
+    return  render(
+        request,
+        'admin/admin_univers.html',
+        context={}
+    )

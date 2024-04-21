@@ -25,7 +25,38 @@ class Profile(models.Model):
     birth_date = models.DateField(null=False, blank=False)
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
     phoneNumber = models.CharField(validators=[phoneNumberRegex], max_length=16, unique=True, null=False, blank=False)
-    education = models.CharField(max_length=600, blank=True,null=True)
+    education = models.CharField(max_length=200, blank=True,null=True)
+
+    FRESHMAN = "FR"
+    SOPHOMORE = "SO"
+    JUNIOR = "JR"
+    SENIOR = "SR"
+    GRADUATE = "GR"
+    YEAR_IN_SCHOOL_CHOICES = {
+        FRESHMAN: "Freshman",
+        SOPHOMORE: "Sophomore",
+        JUNIOR: "Junior",
+        SENIOR: "Senior",
+        GRADUATE: "Graduate",
+    }
+
+    student = "ST"
+    matriculant = "AB"
+    teacher = "TE"
+
+    user_type_choises = {
+        student: "Студент",
+        matriculant: "Абитуриент",
+        teacher: "Преподаватель"
+
+    }
+
+    user_type = models.CharField(
+        max_length=2,
+        choices=user_type_choises,
+        default=matriculant,
+    )
+
 
 
 class University(models.Model):
@@ -45,5 +76,41 @@ class University(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     reviews = models.ManyToManyField('Review', null=True, blank=True, related_name='universities')
+
+    student = "ST"
+    matriculant = "AB"
+    teacher = "TE"
+
+    user_type_choises = {
+        student: "Студент",
+        matriculant: "Абитуриент",
+        teacher: "Преподаватель"
+
+    }
+
+    user_type = models.CharField(
+        max_length=2,
+        choices=user_type_choises,
+        default=matriculant,
+    )
+
+
+    verified = "VF"
+    no_verified = "NF"
+    on_moderate = "MO"
+    declined = "DE"
+
+    check_type_choises = {
+        verified: "Верифицирован",
+        no_verified: "Не Верифицирован",
+        on_moderate: "На модерации",
+        declined: "Отклонен",
+    }
+
+    check_type = models.CharField(
+        max_length=2,
+        choices=check_type_choises,
+        default=no_verified,
+    )
 
 

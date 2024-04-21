@@ -10,7 +10,7 @@ DATABASE_PASSWORD = password # Not used with sqlite3.
 
 SECRET_KEY = 'django-insecure-iz_=#7m$w#_37w3(g76p#)lh8*dmm(n97+5le=pbcp0ihtpky^'
 
-
+# for testing
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -21,3 +21,17 @@ DATABASES = {
         'PASSWORD': DATABASE_PASSWORD,
     }
 }
+
+DATABASES1 = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'db',
+        'PORT': '',
+        'NAME': 'Panorama',
+        'USER': 'web',
+        'PASSWORD': '12345',
+    }
+}
+
+
+

@@ -23,3 +23,11 @@ python manage.py migrate
 
 запуск сервера для тестов
 python manage.py runserver
+
+
+
+    environment:
+      MYSQL_DATABASE: 'Panorama'
+      MYSQL_USER: 'web'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'rootegor'
