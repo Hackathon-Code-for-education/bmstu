@@ -1,6 +1,5 @@
 from django.core.files.storage import FileSystemStorage
 
-
 from panorama.models import Profile, University
 from panorama.panorama_include.panorama_archive_process import archive_process
 
@@ -79,5 +78,10 @@ def add_univer_scan_file(user,name, file):
     except Exception as e:
         print(e)
         return (False, " ")
+"""
+def check_review (text):
+    return "non-toxic" in pipe_toxic(text)[0]['generated_text']
+    
+"""
 
 
