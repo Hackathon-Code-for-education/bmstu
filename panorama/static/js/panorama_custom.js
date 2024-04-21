@@ -1,5 +1,5 @@
 const container = document.getElementById("panorama_players_container")
-
+console.log(container)
 const url_params = window.location.pathname.split("/");
 const orgname = url_params[url_params.length-2];
 const json_prop = "/uploads/tiles/".concat(orgname, "/property.json");
@@ -15,7 +15,7 @@ request.send();
 
 function createPanoramas(text){
     panoramas = JSON.parse(text)
-
+    console.log(text)
     let count = panoramas.routes.length;
     for(let i = 0; i< count; i++){
         panorama_init(panoramas.routes[i])
@@ -39,6 +39,8 @@ function panorama_init(route){
     const player_div = document.createElement("div")
     player_div.id = "player".concat(route.name)
     player_div.className = "panorama_player"
+    player_div.style.width = "100%"
+    player_div.style.height = "1024px"
     div2.appendChild(player_div)
 
     const photo_path = "/uploads/tiles/".concat(orgname, "/", route.name);
@@ -317,7 +319,7 @@ function panorama_init(route){
         var panorama = new MyPanorama(panoData[0]);
 
         // Отображаем панораму на странице.
-        var player = new ymaps.panorama.Player('player', panorama, {
+        var player = new ymaps.panorama.Player('player'+route.name, panorama, {
             direction: [25, 0]
         });
     });
