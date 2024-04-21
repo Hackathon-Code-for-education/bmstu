@@ -63,8 +63,11 @@ def signup(request):
             # 'date': datetime.date(2000, 10, 10), 'education': 'BG',
             # 'user_type': 'AB', 'password': '1234', 'password2': '1234', 'image': None}
             # qqq
-            #profile = Profile.objects.create(user = user, birth_date=data['date'],
-               #                              education=data['education'], user_type=data['user_type'])
+            try:
+                profile = Profile.objects.create(user = user, birth_date=data['date'],
+                                              education=data['education'], user_type=data['user_type'])
+            except Exception as e:
+                print(e)
 
             print(user)
             if request.FILES:
@@ -204,6 +207,11 @@ def for_univers(request):
 def add_paorama(request):
     form = AddPanoramaForm()
 
+    user = request.user
+    univer = University.objects.get(user=user)
+    univer_id = univer.id
+    # redirect(panorama, univer_id=univer_id)
+
     if request.method == "POST":
         form = AddPanoramaForm(request.POST, request.FILES)
         if form.is_valid():
@@ -211,7 +219,10 @@ def add_paorama(request):
             file_url = res[1]
             print(file_url)
             print(res)
-            # redirect(panorama,univer_id=1)
+            user = request.user
+            univer = University.objects.get(user=user)
+            univer_id = univer.id
+            return redirect(panorama, univer_id=univer_id)
         else:
             print("nooooo")
 

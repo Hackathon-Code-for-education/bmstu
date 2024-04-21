@@ -48,8 +48,9 @@ def add_zip_file(user, form) -> (bool, str):
         filename = fs.save(path, file)
         file_url = fs.url(filename)
 
-
-        archive_process("1", "panorama/"+file_url, "panorama/uploads/tiles/")
+        univer = University.objects.get(user = user)
+        univer_id = univer.id
+        archive_process(f"{univer_id}", "panorama/"+file_url, "panorama/uploads/tiles/")
 
         print(file_url)
 
