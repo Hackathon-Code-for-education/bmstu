@@ -190,10 +190,35 @@ def privacy_policy(request):
 
 
 def administr_panorama(request):
+    verified = []
+    on_moderate = []
+    declined = []
+    try:
+        # University.objects.get_queryset()
+        verified = University.objects.filter(check_type = "VF")
+    except Exception as e:
+        print(e)
+    try:
+        on_moderate = University.objects.filter(check_type = "MO")
+    except Exception as e:
+        print(e)
+    try:
+        declined = University.objects.filter(check_type = "DE")
+    except Exception as e:
+        print(e)
+
+
+    univers = {
+        'verified': verified,
+        'on_moderate': on_moderate,
+        'declined': declined
+    }
+
+
     return  render(
         request,
         'admin/admin_univers.html',
-        context={}
+        context={'univers': univers}
     )
 
 
@@ -219,7 +244,7 @@ def add_paorama(request):
             file_url = res[1]
             print(file_url)
             print(res)
-            user = request.user
+            user = request.user.is_staff
             univer = University.objects.get(user=user)
             univer_id = univer.id
             return redirect(panorama, univer_id=univer_id)

@@ -35,6 +35,11 @@
                 <div class="dropdown-content">
                     <a href="{% url 'index' %}">Главная</a>
                     <a href="{% url 'for_univers' %}">Университетам</a>
+                    <a href="{% url 'chat' %}">Чат</a>
+                    {% if request.user.is_staff %}
+                        <a href="{% url 'admin_pan' %}">Aдмин панель</a>
+                    {% endif %}
+
 
                 </div>
             </div>
