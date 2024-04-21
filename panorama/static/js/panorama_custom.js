@@ -23,10 +23,23 @@ function createPanoramas(text){
 }
 function panorama_init(route){
 
+    const div1 = document.createElement("div")
+    div1.className = "row"
+    container.appendChild(div1)
+
+    const div2 = document.createElement("div")
+    div2.className = "row"
+    container.appendChild(div2)
+
+    const player_label = document.createElement("div")
+    player_label.textContent = route.name
+    player_label.className = "panorama_player_label"
+    div1.appendChild(player_label)
+
     const player_div = document.createElement("div")
     player_div.id = "player".concat(route.name)
-    player_div.class = "panorama_player"
-    container.appendChild(player_div)
+    player_div.className = "panorama_player"
+    div2.appendChild(player_div)
 
     const photo_path = "/uploads/tiles/".concat(orgname, "/", route.name);
 
