@@ -26,7 +26,7 @@ class RegisterForm(forms.ModelForm):
     password2 = forms.CharField(label='Повтор пароля',
                                 widget=forms.PasswordInput(attrs={"class": "col-9 pole_for_log"}))
 
-    image = forms.ImageField(required=False, label="Загрузка аватара", widget=forms.FileInput(attrs={"class": "col-9"}))
+    image = forms.ImageField(required=True, label="Загрузка аватара", widget=forms.FileInput(attrs={"class": "col-9"}))
 
     class Meta:
         model = User
