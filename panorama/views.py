@@ -119,7 +119,8 @@ def settings(request):
 
     form = SettingsForm(initial={'username': user.username, 'first_name': user.first_name,
                                  'email': user.email,
-                                 'image': profile.image.url
+                                 'image': profile.image.url,
+                                 'date': profile.birth_date
                                  })
     # print(form)
     #form.set_values(user_now.username, user_now.email, user_now.first_name)
