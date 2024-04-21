@@ -1,11 +1,13 @@
 import pytesseract
 import cv2
-# import transformers
-# import matplotlib.pyplot as plt
-# from PIL import Image
+def text_recognition(img):
+    image = cv2.imread(img)
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    string = pytesseract.image_to_string(image,  lang='rus').lower()
+    words = ["студ", "stud", "декан", "уннвир", "уннвер"]
+    for i in words:
+        if i in string:
+            return True
+    return False
 
-image = cv2.imread("stud3.png")
-# print(image)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-string = pytesseract.image_to_string(image,  lang='rus')
-print(string)
+print(text_recognition("passport1.png"))
