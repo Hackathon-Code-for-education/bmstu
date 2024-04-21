@@ -1,14 +1,9 @@
 {
     "routes": [
         {
-            "name":"route1"
-            "count":1
-            "size": [9728, 4864]
-            "size_cell": [512,512]
-        },{
-            "name":"route2"
-            "count":2
-            "size": [3584, 1792]
-            "size_cell": [512,512]
+            "name":"route3",
+            "count":2,
+            "size": [3584, 1792],
+            "tile_size": [512,512]
         }]
 }

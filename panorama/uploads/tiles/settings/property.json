@@ -1,0 +1,9 @@
+{
+    "routes": [
+        {
+            "name":"route3",
+            "count":2,
+            "size": [3584, 1792],
+            "tile_size": [512,512]
+        }]
+}
