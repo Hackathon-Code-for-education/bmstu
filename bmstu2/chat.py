@@ -1,12 +1,8 @@
 import flet as ft
-# from langdetect import detect
-# from translate import Translator
 from transformers import pipeline
-from colr import color
 pipe = pipeline("text2text-generation", model="abhiai/ModerationGPT")
 pipe_toxic = pipeline("text2text-generation", model="Vaibhav9401/toxic_mt5_test")
-# translator_ru_to_eng = Translator(from_lang="ru", to_lang="eng")
-# translator_eng_to_ru = Translator(from_lang="eng", to_lang="ru")
+
 class Message():
     def __init__(self, user_name: str, text: str, message_type: str):
         self.user_name = user_name
@@ -82,18 +78,6 @@ def main(page: ft.Page):
             new_message.value = ""
             new_message.focus()
             page.update()
-            # if not("non-toxic" in pipe_toxic(new_message.value)[0]['generated_text']):
-            #     page.pubsub.send_all(
-            #         Message("moderation",
-            #                 f"сообщение от {page.session.get('user_name')} будет рассмотрено модератором",
-            #                 message_type="chat_message")
-            #         # Message(f"сообщение от {page.session.get('user_name')} будет рассмотрено модератором",
-            #         #         message_type="chat_message")
-            #     )
-            # new_message.value = ""
-            # new_message.focus()
-            # page.update()
-
     def on_message(message: Message):
         if message.message_type == "chat_message":
             m = ChatMessage(message)
