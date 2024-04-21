@@ -191,7 +191,8 @@ def add_paorama(request):
         form = AddPanoramaForm(request.POST, request.FILES)
         if form.is_valid():
             res=add_zip_file(request.user, form)
-
+            file_url = res[1]
+            print(file_url)
             print(res)
         else:
             print("nooooo")

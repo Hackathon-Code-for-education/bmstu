@@ -21,6 +21,10 @@
         <a href="{% url 'add_panorama' %}">
             Добавить панораму
         </a>
+        {% elif request.user.is_authenticated and user.profile.user_type == "ST" %}
+        <a href="{% url 'add_panorama' %}">
+            Добавить панораму
+        </a>
     {% endif %}
 
 
