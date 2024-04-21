@@ -56,6 +56,19 @@ def signup(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
             user = User.objects.get(username=new_user.username)
+
+            data = user_form.cleaned_data
+            print(data)
+            # {'username': 'qqq', 'first_name': 'qeee', 'email': 'eee@mail.ru',
+            # 'date': datetime.date(2000, 10, 10), 'education': 'BG',
+            # 'user_type': 'AB', 'password': '1234', 'password2': '1234', 'image': None}
+            # qqq
+            try:
+                profile = Profile.objects.create(user = user, birth_date=data['date'],
+                                              education=data['education'], user_type=data['user_type'])
+            except Exception as e:
+                print(e)
+
             print(user)
             if request.FILES:
                 add_image_profile(user, request)
@@ -129,7 +142,14 @@ def univer(request, univer_id):
             if form.is_valid():
                 if request.user.is_authenticated:
                     data = form.cleaned_data
+                    review = data["review"]
+                    print(review)
+                    # if check_review(review):
                     item.reviews.create(text=data["review"], user=request.user)
+                    """
+                    else:
+                        form.add_error('review', "Такое нельзя писать здесь")
+                    """
                 else:
                     form.add_error('review', "You must be logged in!")
                     return render(
@@ -170,10 +190,35 @@ def privacy_policy(request):
 
 
 def administr_panorama(request):
+    verified = []
+    on_moderate = []
+    declined = []
+    try:
+        # University.objects.get_queryset()
+        verified = University.objects.filter(check_type = "VF")
+    except Exception as e:
+        print(e)
+    try:
+        on_moderate = University.objects.filter(check_type = "MO")
+    except Exception as e:
+        print(e)
+    try:
+        declined = University.objects.filter(check_type = "DE")
+    except Exception as e:
+        print(e)
+
+
+    univers = {
+        'verified': verified,
+        'on_moderate': on_moderate,
+        'declined': declined
+    }
+
+
     return  render(
         request,
         'admin/admin_univers.html',
-        context={}
+        context={'univers': univers}
     )
 
 
@@ -187,6 +232,11 @@ def for_univers(request):
 def add_paorama(request):
     form = AddPanoramaForm()
 
+    user = request.user
+    univer = University.objects.get(user=user)
+    univer_id = univer.id
+    # redirect(panorama, univer_id=univer_id)
+
     if request.method == "POST":
         form = AddPanoramaForm(request.POST, request.FILES)
         if form.is_valid():
@@ -194,7 +244,10 @@ def add_paorama(request):
             file_url = res[1]
             print(file_url)
             print(res)
-            # redirect(panorama,univer_id=1)
+            user = request.user.is_staff
+            univer = University.objects.get(user=user)
+            univer_id = univer.id
+            return redirect(panorama, univer_id=univer_id)
         else:
             print("nooooo")
 

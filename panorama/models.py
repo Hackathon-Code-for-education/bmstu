@@ -58,8 +58,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
         upload_to=user_directory_path,
-        blank=True,
-        null=True
+        blank=False,
+        null=False
     )
     birth_date = models.DateField(null=False, blank=False)
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")

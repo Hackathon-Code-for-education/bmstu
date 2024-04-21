@@ -1,6 +1,5 @@
 from django.core.files.storage import FileSystemStorage
 
-
 from panorama.models import Profile, University
 from panorama.panorama_include.panorama_archive_process import archive_process
 
@@ -49,8 +48,9 @@ def add_zip_file(user, form) -> (bool, str):
         filename = fs.save(path, file)
         file_url = fs.url(filename)
 
-
-        archive_process("1", "panorama/"+file_url, "panorama/uploads/tiles/")
+        univer = University.objects.get(user = user)
+        univer_id = univer.id
+        archive_process(f"{univer_id}", "panorama/"+file_url, "panorama/uploads/tiles/")
 
         print(file_url)
 
@@ -79,5 +79,10 @@ def add_univer_scan_file(user,name, file):
     except Exception as e:
         print(e)
         return (False, " ")
+"""
+def check_review (text):
+    return "non-toxic" in pipe_toxic(text)[0]['generated_text']
+    
+"""
 
 

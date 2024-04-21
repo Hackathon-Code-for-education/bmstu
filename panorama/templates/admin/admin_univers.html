@@ -7,7 +7,7 @@
 
 
 {% block title %}
-        Управление вузами
+    Управление вузами
 {% endblock %}
 
 
@@ -16,13 +16,19 @@
     <h3>
         Верефицированные вузы
     </h3>
-
+    {% for item in univers.verified %}
+        {% include 'components/universitite-item.html' %}
+    {% endfor %}
     <h3>
         На модерации
     </h3>
-
+    {% for item in univers.on_moderate %}
+        {% include 'components/universitite-item.html' %}
+    {% endfor %}
     <h3>
         Отклоненные
     </h3>
-
+    {% for item in univers.declined %}
+        {% include 'components/universitite-item.html' %}
+    {% endfor %}
 {% endblock %}
