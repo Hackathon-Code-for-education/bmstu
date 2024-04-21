@@ -39,6 +39,10 @@ python manage.py runserver 8001
 ## Cоздать суперпользователя
 
 ```
+python manage.py createsuperuser
+```
+
+```
 Username (leave blank to use 'admin'): admin
 Email address: admin@admin.com
 Password: ********

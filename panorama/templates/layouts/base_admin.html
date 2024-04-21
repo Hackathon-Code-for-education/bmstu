@@ -11,7 +11,7 @@
     {% endblock %}
     <title>
         {% block title %}
-        Panorama
+        Админ
         {% endblock %}
     </title>
 </head>
@@ -19,9 +19,7 @@
 {% block navbar %}
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-
         <div class="container-fluid">
-
             <div class="dropdown1 navbar1 col-0">
                 <button class="dropbtn">
                     <svg xmlns='{% static 'img/list.svg' %}' width="16" height="16" fill="currentColor"
@@ -34,8 +32,6 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="{% url 'index' %}">Главная</a>
-                    <a href="{% url 'for_univers' %}">Университетам</a>
-
                 </div>
             </div>
 
@@ -64,16 +60,16 @@
                         <div class="col-8" style="margin-left: 20px">
                             <a style="color:#fff">{{ user.username }}</a>
                             <div class="row-cols-3">
-                                <a href='{% url 'settings' %}' style="color:#fff">Настройки</a>
-                                <a href='{% url 'logout_user' %}' style="color:#fff ">Выход</a>
+                                <a href='{% url 'settings' %}' style="color:#fff">settings</a>
+                                <a href='{% url 'logout_user' %}' style="color:#fff ">log out</a>
                             </div>
                         </div>
                     {% else %}
 
                         <div class="col-8" style="margin-left: 20px">
                             <div class="row-cols-3">
-                                <a href='{% url 'login' %}' style="color:#fff; margin-right: 20px">Вход</a>
-                                <a href='{% url 'signup' %}' style="color:#fff ">Регистрация</a>
+                                <a href='{% url 'login' %}' style="color:#fff; margin-right: 20px">log in</a>
+                                <a href='{% url 'signup' %}' style="color:#fff ">register</a>
                             </div>
                         </div>
 
@@ -90,24 +86,10 @@
 
 
 <main class="container">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-8" style="margin-right: 105px">
-                {% block left-side %}
-
-                {% endblock %}
-            </div>
-
-            <div class="col-3">
-                {% block right-side %}
-
-
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-    {% block panoram %}
+    <h2>
+        Панель администратора
+    </h2>
+    {% block main %}
 
     {% endblock %}
 </main>

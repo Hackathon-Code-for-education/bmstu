@@ -23,3 +23,24 @@ python manage.py migrate
 
 запуск сервера для тестов
 python manage.py runserver
+
+
+
+    environment:
+      MYSQL_DATABASE: 'Panorama'
+      MYSQL_USER: 'web'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'rootegor'
+
+
+
+
+Для тестов:
+
+
+Сделать дамп базы данных
+./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+
+
+Загрузить дамп базы данных
+./manage.py loaddata db.json

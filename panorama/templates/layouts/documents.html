@@ -33,8 +33,7 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="{% url 'index' %}">Главная</a>
-                    <a href="{% url 'for_univers' %}">Университетам</a>
+                    <a href="{% url 'index' %}">Home</a>
 
                 </div>
             </div>
@@ -90,24 +89,7 @@
 
 
 <main class="container">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-8" style="margin-right: 105px">
-                {% block left-side %}
-
-                {% endblock %}
-            </div>
-
-            <div class="col-3">
-                {% block right-side %}
-
-
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-    {% block panoram %}
+    {% block main %}
 
     {% endblock %}
 </main>
