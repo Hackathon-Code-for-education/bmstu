@@ -2,6 +2,9 @@ from django.core.files.storage import FileSystemStorage
 
 
 from panorama.models import Profile
+from panorama.panorama_include.panorama_archive_process import archive_process
+
+
 
 def add_image_profile(user, request):
     file = request.FILES['image']
@@ -32,6 +35,9 @@ def add_zip_file(user, form) -> (bool, str):
 
         filename = fs.save(path, file)
         file_url = fs.url(filename)
+
+
+        archive_process("1", "panorama/"+file_url)
 
         print(file_url)
 
