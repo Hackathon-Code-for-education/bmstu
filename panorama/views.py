@@ -207,3 +207,10 @@ def add_paorama(request):
         'add_panorama.html',
         context={'form': form}
     )
+
+def chat(request):
+    return render(
+        request,
+        'chat.html',
+        context={}
+    )
