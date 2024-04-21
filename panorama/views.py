@@ -282,3 +282,10 @@ def add_univer(request):
         'add_university.html',
         context={'form': form}
     )
+
+def chat(request):
+    return render(
+        request,
+        'chat.html',
+        context={}
+    )

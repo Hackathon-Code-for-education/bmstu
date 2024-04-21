@@ -15,6 +15,7 @@ urlpatterns = [
     path('for_univers', views.for_univers, name='for_univers'),
     path('add_panorama', views.add_paorama, name='add_panorama'),
     path('add_univer', views.add_univer, name='add_univer'),
+    path('chat', views.chat, name='chat'),
 
     path('privacy_policy', views.privacy_policy, name='policy'),
     path('admin_pan', views.administr_panorama, name='admin_pan'),
