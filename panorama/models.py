@@ -15,6 +15,23 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     text = models.CharField(max_length=600, null=False, blank=False)
 
+    on_moderate = "MO"
+    declined = "DE"
+    accepted = "AC"
+
+    check_type_choises = {
+        on_moderate: "На модерации",
+        declined: "Отклонен",
+        accepted: "Принят"
+    }
+
+    check_type = models.CharField(
+        max_length=2,
+        choices=check_type_choises,
+        default=on_moderate,
+    )
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
