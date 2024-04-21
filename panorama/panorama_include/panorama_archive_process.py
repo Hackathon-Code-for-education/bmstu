@@ -79,10 +79,14 @@ def archive_process(org, archive_path, load_path):
             
 def setJson(org, r_name, info, image_size):
     global panorama_archive_process_load_path
-    f = open(panorama_archive_process_load_path+org+"/property.json", "r")
-    str_in = f.read()
-    f.close()
-    json_text = json.loads(str_in)
+    json_text = ""
+    try:
+        f = open(panorama_archive_process_load_path+org+"/property.json", "r")
+        str_in = f.read()
+        f.close()
+        json_text = json.loads(str_in)
+    except:
+        json_text = {"routes":[]}
     names = []
     for i in json_text["routes"]:
         names.append(i["name"])
@@ -110,5 +114,3 @@ def create_dir(org, name):
         except FileExistsError:
             print("path "+i+" already exist")
         
-if __name__ == "__main__":
-    archive_process("1", "подъезд.zip")
