@@ -5,6 +5,7 @@ import os, json
 from PIL import Image
 import os
 
+panorama_archive_process_load_path = ""
 
 def crop_and_load(image, cell_size, org, name, index):
     size = image.size
@@ -35,11 +36,11 @@ def crop_and_load(image, cell_size, org, name, index):
 
 def create_directory(org, name, index):
     path = [0, 0, 0, 0, 0]
-    path[0] = "../uploads/tiles/" + org
-    path[1] = "../uploads/tiles/" + org + "/" + name
-    path[2] = "../uploads/tiles/" + org + "/" + name + "/" + index
-    path[3] = "../uploads/tiles/" + org + "/" + name + "/" + index + "/hq"
-    path[4] = "../uploads/tiles/" + org + "/" + name + "/" + index + "/lq"
+    path[0] = panorama_archive_process_load_path + org
+    path[1] = panorama_archive_process_load_path + org + "/" + name
+    path[2] = panorama_archive_process_load_path + org + "/" + name + "/" + index
+    path[3] = panorama_archive_process_load_path + org + "/" + name + "/" + index + "/hq"
+    path[4] = panorama_archive_process_load_path + org + "/" + name + "/" + index + "/lq"
     for i in path:
         try:
             os.mkdir(i)
@@ -48,9 +49,14 @@ def create_directory(org, name, index):
     return path[2]
 
 
-def archive_process(org, archive_path):
+def archive_process(org, archive_path, load_path):
+    global panorama_archive_process_load_path    
+    org = str(org)
+    panorama_archive_process_load_path = load_path   
+    print(os.getcwd()) 
     try:
         archive_name = ZipInfo.from_file(archive_path).filename
+        archive_name = archive_name.split("/")[-1]
         create_dir(org, archive_name.split(".")[0])    
         with ZipFile(archive_path, "r") as myzip:
             
@@ -72,7 +78,8 @@ def archive_process(org, archive_path):
         print(e)
             
 def setJson(org, r_name, info, image_size):
-    f = open("../uploads/tiles/"+org+"/property.json", "r")
+    global panorama_archive_process_load_path
+    f = open(panorama_archive_process_load_path+org+"/property.json", "r")
     str_in = f.read()
     f.close()
     json_text = json.loads(str_in)
@@ -83,7 +90,7 @@ def setJson(org, r_name, info, image_size):
         json_text["routes"].append({"name":r_name, "count":len(info)-1, "tile_size":[512,512], "size":image_size})
     str_out = json.dumps(json_text)
     
-    f = open("../uploads/tiles/"+org+"/property.json", "w")
+    f = open(panorama_archive_process_load_path+org+"/property.json", "w")
     f.write(str_out)
     f.close()
 
@@ -93,9 +100,10 @@ def deleteall(info):
     os.rmdir("./temp/"+info[0])
 
 def create_dir(org, name):
+    global panorama_archive_process_load_path 
     path = [0,0]    
-    path[0] = "../uploads/tiles/"+org
-    path[1] = "../uploads/tiles/"+org+"/"+name
+    path[0] = panorama_archive_process_load_path+org
+    path[1] = panorama_archive_process_load_path+org+"/"+name
     for i in path:
         try:
             os.mkdir(i)

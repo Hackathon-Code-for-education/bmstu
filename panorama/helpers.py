@@ -37,7 +37,7 @@ def add_zip_file(user, form) -> (bool, str):
         file_url = fs.url(filename)
 
 
-        archive_process("1", "panorama/"+file_url)
+        archive_process("1", "panorama/"+file_url, "panorama/uploads/tiles/")
 
         print(file_url)
 
