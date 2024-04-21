@@ -62,7 +62,7 @@ class Profile(models.Model):
 
 
 class University(models.Model):
-    admin_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=False, blank=False)
 
     image = models.ImageField(
