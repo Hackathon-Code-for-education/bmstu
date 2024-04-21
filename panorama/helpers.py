@@ -16,3 +16,28 @@ def add_image_profile(user, request):
     profile.image = filename
     profile.save()
 
+
+def add_zip_file(user, form) -> (bool, str):
+    try:
+        data = form.cleaned_data
+        file = data['file']
+        title = data['title']
+
+        fs = FileSystemStorage()
+        path = f"tiles/{user.id}-{title}.zip"
+
+        if fs.exists(path):
+            fs.delete(path)
+
+
+        filename = fs.save(path, file)
+        file_url = fs.url(filename)
+
+        print(file_url)
+
+        return (True, file_url)
+    except Exception as e:
+        print(e)
+        return (False, " ")
+
+
