@@ -5,7 +5,23 @@
 ЪУЪ.pdf или ЪУЪ.pptx - презентация
 ЪУЪ.mp4 - Видео демонстрация
 
-## Инструкция по установке 
+## Инструкция по установке
+
+
+### Docker
+
+#### Запуск контейнеров
+
+```
+docker-compose up
+```
+
+#### Миграция базы данных
+
+```
+docker-compose run web python manage.py makemigrations
+docker-compose run web python manage.py migrate
+```
 
 ### Linux
 
@@ -111,8 +127,6 @@ python manage.py runserver
 ```
 python manage.py runserver port
 ```
-
-
 
 ## Функционал
 

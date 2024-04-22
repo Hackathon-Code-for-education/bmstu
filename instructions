@@ -54,8 +54,11 @@ python manage.py runserver
 ./manage.py loaddata db.json
 
 
-Для того, чтобы выполнить миграцию бд, выполните команды:
+Для запуска
 
+docker-compose up
+
+Для того, чтобы выполнить миграцию бд, выполните команды:
 
 docker-compose run web python manage.py makemigrations
 

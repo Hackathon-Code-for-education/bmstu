@@ -26,3 +26,9 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+#Запуск чата в отдельной контейнере
+# чтобы работало надо конкретно для него зависимоти прописать
+  #chat:
+   # build: ./bmstu2
+
+
