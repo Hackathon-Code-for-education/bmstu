@@ -4,8 +4,10 @@
 {% block title %}
 University
 {% endblock %}
+{% block links %}
+<script src= {% static 'js/jquery.js' %}></script>
 
-
+{% endblock %}
 
 {% block left-side %}
     {% include 'components/universitite-item.html' %}
@@ -31,5 +33,4 @@ University
 
 {% block scripts %}
     <script src={% static 'js/like-counter.js' %}></script>
-    <script src="{% static 'js/checkbox-right.js' %}"></script>
 {% endblock %}

@@ -29,7 +29,15 @@ python manage.py runserver
     environment:
       MYSQL_DATABASE: 'Panorama'
       MYSQL_USER: 'web'
-      MYSQL_PASSWORD: 'root'
+      MYSQL_PASSWORD: 'test'
+      MYSQL_ROOT_PASSWORD: 'rootegor'
+
+
+
+          environment:
+      MYSQL_DATABASE: 'Panorama'
+      MYSQL_USER: 'web'
+      MYSQL_PASSWORD: '12345'
       MYSQL_ROOT_PASSWORD: 'rootegor'
 
 
@@ -44,3 +52,11 @@ python manage.py runserver
 
 Загрузить дамп базы данных
 ./manage.py loaddata db.json
+
+
+Для того, чтобы выполнить миграцию бд, выполните команды:
+
+
+docker-compose run web python manage.py makemigrations
+
+docker-compose run web python manage.py migrate

@@ -3,6 +3,7 @@ from django.template.defaulttags import url
 from django.urls import path
 
 from panorama import views
+from panorama.models import Review, LikeDis
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -19,5 +20,13 @@ urlpatterns = [
 
     path('privacy_policy', views.privacy_policy, name='policy'),
     path('admin_pan', views.administr_panorama, name='admin_pan'),
+
+
+    path('api/answer/<int:id>/like/',
+         login_required(views.VotesView.as_view(model=Review, vote_type=LikeDis.LIKE)),
+         name='answer_like'),
+    path('api/answer/<int:id>/dislike/',
+         login_required(views.VotesView.as_view(model=Review, vote_type=LikeDis.DISLIKE)),
+         name='answer_dislike'),
 
 ]

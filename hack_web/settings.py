@@ -125,6 +125,9 @@ if DEBUG:
     ]
     ALLOWED_HOSTS += ['*']
 
+
+# STATIC_ROOT = BASE_DIR / 'panorama/static'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

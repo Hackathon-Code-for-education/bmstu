@@ -6,6 +6,8 @@ admin.site.register(Profile)
 admin.site.register(Comment)
 admin.site.register(Review)
 admin.site.register(University)
+admin.site.register(LikeDis)
+
 
 
 

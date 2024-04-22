@@ -1,27 +1,28 @@
-version: '3.8'
+version: '3'
 services:
+  db:
+      image: mysql:8
+      restart: always
+      ports:
+        - "3307:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: 'rootegor'
+        MYSQL_DATABASE: 'Panorama'
+        MYSQL_USER: 'web'
+        MYSQL_PASSWORD: 'test'
+
+      volumes:
+        - ./dbdata:/var/lib/mysql/
   web:
     build: .
-    command: python manage.py runserver 8000
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
     ports:
-      - 8002:8000
+      - "8010:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
-
-  db:
-    image: mysql:latest
-    expose:
-      - 3306
-    environment:
-      MYSQL_DATABASE: 'Panorama'
-      MYSQL_USER: 'web'
-      MYSQL_PASSWORD: '12345'
-      MYSQL_ROOT_PASSWORD: 'rootegor'
-    restart: always
-
-
-
-
-
-
-

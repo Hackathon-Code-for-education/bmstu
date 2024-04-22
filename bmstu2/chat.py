@@ -2,7 +2,7 @@ import flet as ft
 # from langdetect import detect
 # from translate import Translator
 from transformers import pipeline
-from colr import color
+# from colr import color
 pipe = pipeline("text2text-generation", model="abhiai/ModerationGPT")
 pipe_toxic = pipeline("text2text-generation", model="Vaibhav9401/toxic_mt5_test")
 # translator_ru_to_eng = Translator(from_lang="ru", to_lang="eng")

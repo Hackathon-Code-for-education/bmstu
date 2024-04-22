@@ -6,6 +6,8 @@ from panorama.forms import RegisterForm, SettingsForm, LoginForm, AddReviewForm,
 from panorama.helpers import add_image_profile, add_zip_file, add_image_univer
 from panorama.models import *
 from django.http import HttpResponse
+from django.views import View
+import json
 
 
 def index(request):
@@ -343,3 +345,37 @@ def chat(request):
         'chat.html',
         context={}
     )
+
+
+class VotesView(View):
+    model = None  # Модель данных - Статьи или Комментарии
+    vote_type = None  # Тип комментария Like/Dislike
+
+    def post(self, request, id):
+        obj = self.model.objects.get(pk=id)
+        # GenericForeignKey не поддерживает метод get_or_create
+        try:
+            likedislike = LikeDis.objects.get(content_type=ContentType.objects.get_for_model(obj),
+                                              object_id=obj.id,
+                                              user=request.user)
+            if likedislike.vote is not self.vote_type:
+                likedislike.vote = self.vote_type
+                likedislike.save(update_fields=['vote'])
+                result = True
+            else:
+                likedislike.delete()
+                result = False
+        except LikeDis.DoesNotExist:
+            obj.likes.create(user=request.user, vote=self.vote_type)
+            result = True
+
+        # print(request)
+        return HttpResponse(
+            json.dumps({
+                "result": result,
+                "like_count": obj.likes.likes().count(),
+                "dislike_count": obj.likes.dislikes().count(),
+                "sum_rating": obj.likes.sum_rating()
+            }),
+            content_type="application/json"
+        )
