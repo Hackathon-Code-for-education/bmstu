@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-      image: mysql:8
+      image: mysql:latest
       restart: always
       ports:
         - "3307:3306"
@@ -28,7 +28,9 @@ services:
       - db
 #Запуск чата в отдельной контейнере
 # чтобы работало надо конкретно для него зависимоти прописать
-  #chat:
-   # build: ./bmstu2
+  chat:
+   build: ./bmstu2
+
+   command: python chat.py
 
 
